@@ -2,10 +2,8 @@
 name: Python Test and Webhook
 
 on:
-  push:
-    branches: [ main, master ] # Adjust to your default branch
   pull_request:
-    branches: [ main, master ] # Adjust to your default branch
+    types: [ opened, reopened, edited ]
   workflow_dispatch: # Allows manual triggering
 
 jobs:
