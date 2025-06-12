@@ -1,0 +1,29 @@
+# .github/workflows/main.yml
+name: Python Test and Webhook
+
+on:
+  push:
+    branches: [ main, master ] # Adjust to your default branch
+  pull_request:
+    branches: [ main, master ] # Adjust to your default branch
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  test_and_report:
+    runs-on: ubuntu-latest
+    # The job status will be 'success' or 'failure' based on the test step.
+    # If tests fail, the job fails, and job.status will reflect that.
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      - name: Run unit tests
+        id: run_tests
+        run: |
+          python -m unittest test.py
